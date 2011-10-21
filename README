@@ -1,0 +1,12 @@
+Requirements;
+
+4G RAM
+- Ruby 1.8.7+
+- Ruby Gems
+- Vagrant (http://www.vagrantup.com/)
+- VirtualBox (https://www.virtualbox.org/wiki/Downloads)
+
+Getting Started;
+
+cd src/vagrant
+vagrant up
