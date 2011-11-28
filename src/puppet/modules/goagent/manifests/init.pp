@@ -1,14 +1,14 @@
 class goagent($conf_file) {
-	file { 'iptables':
-		path => '/etc/sysconfig/iptables',
+	file { 'goagent':
+		path => '/etc/defaults/go-agent',
 		ensure => file,
 		group => root,
 		owner => root,
-		notify => Service['iptables'],
-		source => "puppet:///modules/iptables/$conf_file",
+		notify => Service['go-agent'],
+		source => "puppet:///modules/goagent/$conf_file",
 	}
 
-	service { 'iptables':
+	service { 'go-agent':
 		ensure => running,
 		enable => true,
 		hasstatus => true,
