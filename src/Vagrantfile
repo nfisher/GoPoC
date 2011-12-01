@@ -2,7 +2,6 @@ Vagrant::Config.run do |config|
 	config.vm.define :go do |server|
 		server.vm.box = "centos-6"
 		server.vm.box_url = "http://dl.dropbox.com/u/27749255/centos-6.box"
-		server.vm.forward_port("go", 8153, 8153)
 		server.vm.forward_port("go-ssl", 8154, 8154)
 		server.vm.network("10.0.0.2")
 		server.vm.host_name = "go01.local"
@@ -23,7 +22,7 @@ Vagrant::Config.run do |config|
 		server.vm.network("10.0.0.3")
 		server.vm.host_name = "builder01.local"
 		server.vm.customize do |vm|
-			vm.memory_size = 768
+			vm.memory_size = 512
 		end
 
 		server.vm.provision :puppet do |puppet|

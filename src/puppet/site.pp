@@ -14,10 +14,13 @@ node 'go01.local' inherits basenode {
 }
 
 node 'builder01.local' inherits basenode {
-	include go_agent
+	include rubyrake
+	include rubyzip
+	include rubybundler
+	class{ goagent: go_server => "10.0.0.2" }
 }
 
 node 'app01.local' inherits basenode {
-	include go_agent
+	class{ goagent: go_server => "10.0.0.2" }
 }
 

@@ -22,4 +22,9 @@ class goagent($go_server = "10.0.0.2") {
 		hasstatus => true,
 		hasrestart => true,
 	}
+
+	user { 'go':
+		ensure => present,
+		groups => ['go', 'wheel'],
+	}
 }
