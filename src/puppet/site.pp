@@ -33,7 +33,7 @@ node 'ntf01.local' inherits basenode {
 }
 
 node 'prod01.local' inherits basenode {
-	class { nginx: default_path => '/var/lib/go-agent/pipelines/NTF.PoC' }
+	class { nginx: default_path => '/var/lib/go-agent/pipelines/Prod.PoC' }
 	class { goagent: go_server => '10.100.3.144' }
 	class { iptables: tcp_ports => [80] }
 }
