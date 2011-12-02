@@ -1,4 +1,4 @@
-class iptables($conf_file) {
+class iptables($tcp_ports = [], $udp_ports = []) {
 	file { 'iptables':
 		path => '/etc/sysconfig/iptables',
 		ensure => file,
@@ -6,7 +6,7 @@ class iptables($conf_file) {
 		group => root,
 		owner => root,
 		notify => Service['iptables'],
-		source => "puppet:///modules/iptables/$conf_file",
+		content => template('iptables/services.erb')
 	}
 
 	service { 'iptables':

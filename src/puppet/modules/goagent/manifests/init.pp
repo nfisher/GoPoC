@@ -26,5 +26,6 @@ class goagent($go_server = "10.0.0.2") {
 	user { 'go':
 		ensure => present,
 		groups => ['go', 'wheel'],
+		require => Package["go-agent"],
 	}
 }
