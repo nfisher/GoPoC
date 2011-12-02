@@ -18,7 +18,8 @@ class nginx ($default_path = '/usr/share/nginx/html') {
 		group => root,
 		owner => root,
 		notify => Service['nginx'],
-		content => template('nginx/default.conf.erb')
+		content => template('nginx/default.conf.erb'),
+		require => Package['nginx'],
 	}
 
 	service { 'nginx':
