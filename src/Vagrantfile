@@ -1,3 +1,4 @@
+# ex: set syn=ruby :
 Vagrant::Config.run do |config|
 	config.vm.define :go do |server|
 		server.vm.box = "centos-6"
@@ -69,13 +70,31 @@ Vagrant::Config.run do |config|
 	end
 
 	config.vm.define :prod do |server|
+		server.vm.boot_mode = :gui
 		server.vm.box = "centos-6"
 		server.vm.box_url = "http://dl.dropbox.com/u/27749255/centos-6.box"
 		server.vm.network("10.0.0.6")
-		server.vm.forward_port("www", 80, 8081)
 		server.vm.host_name = "prod01.local"
 		server.vm.customize do |vm|
 			vm.memory_size = 256
+		end
+
+		server.vm.provision :puppet do |puppet|
+			puppet.module_path = "puppet/modules"
+			puppet.manifests_path = "puppet"
+			puppet.manifest_file = "site.pp"
+		end
+	end
+
+	config.vm.define :master do |server|
+		server.vm.box = "centos-6"
+		server.vm.boot_mode = :gui
+		server.vm.box_url = "http://dl.dropbox.com/u/27749255/centos-6.box"
+		server.vm.network("10.0.0.7")
+		server.vm.forward_port("stomp", 6163, 6163)
+		server.vm.host_name = "master01.local"
+		server.vm.customize do |vm|
+			vm.memory_size = 1024
 		end
 
 		server.vm.provision :puppet do |puppet|
